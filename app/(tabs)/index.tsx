@@ -7,10 +7,11 @@ import {
   View,
   Button,
 } from "react-native";
-import { createStackNavigator } from "@react-navigation/stack";
+
 import { useNavigation } from "@react-navigation/native";
 import AuthComponent from "@/components/auth/AuthComponent";
 import React from "react";
+import HouseholdDetails from "@/components/HouseholdDetails";
 
 export default function HomeScreen() {
   const navigation = useNavigation();
@@ -24,8 +25,8 @@ export default function HomeScreen() {
     (navigation as any).navigate("auth");
   };
 
-  const testRoute = () => {
-    (navigation as any).navigate("test");
+  const handleHouseholdDetails = () => {
+    (navigation as any).navigate("screens/housedetails");
   };
 
   return (
@@ -45,6 +46,13 @@ export default function HomeScreen() {
         onPress={() => handleSignIn()}
       >
         <Text style={styles.buttonText}>Sign In</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={styles.buttonSecondary}
+        onPress={() => handleHouseholdDetails()}
+      >
+        <Text style={styles.buttonText}>House Hold Details</Text>
       </TouchableOpacity>
     </View>
   );

@@ -27,6 +27,12 @@ const Dashboard = () => {
   const [lastName, setLastName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
+  const [province, setProvince] = useState("");
+  const [district, setDistrict] = useState("");
+
+  const [occupation, setOccupation] = useState("");
+  const [nationality, setNationality] = useState("");
+  const [maritalStatus, setMaritalStatus] = useState("");
   const [gender, setGender] = useState("Select Gender");
   const [date, setDate] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(false);
@@ -60,6 +66,9 @@ const Dashboard = () => {
       !lastName ||
       !phone ||
       !email ||
+      !occupation ||
+      !province ||
+      !district ||
       gender === "Select Gender"
     ) {
       Alert.alert("Error", "Please fill in all fields correctly.");
@@ -75,6 +84,10 @@ const Dashboard = () => {
           lastName,
           phone,
           email,
+          occupation,
+          province,
+          district,
+
           date.toISOString(),
           gender
         );
@@ -86,6 +99,9 @@ const Dashboard = () => {
           lastName,
           phone,
           email,
+          occupation,
+          province,
+          district,
           date.toISOString(),
           gender
         );
@@ -114,6 +130,9 @@ const Dashboard = () => {
     setLastName(person.lastName);
     setPhone(person.phone);
     setEmail(person.email);
+    setOccupation(person.occupation);
+    setProvince(person.province);
+    setDistrict(person.district);
     setGender(person.gender);
     setDate(new Date(person.date)); // Assuming dateOfBirth is a string
     setEditingPersonId(person.id); // Set the ID for updating
@@ -125,6 +144,9 @@ const Dashboard = () => {
     setLastName("");
     setPhone("");
     setEmail("");
+    setOccupation("");
+    setProvince("");
+    setDistrict("");
     setGender("Select Gender");
     setDate(new Date());
     setEditingPersonId(null); // Reset ID for creating new entries
@@ -170,6 +192,30 @@ const Dashboard = () => {
           placeholderTextColor="#888"
         />
 
+        <TextInput
+          style={styles.input}
+          placeholder="Occupation"
+          value={occupation}
+          onChangeText={setOccupation}
+          placeholderTextColor="#888"
+        />
+
+        <TextInput
+          style={styles.input}
+          placeholder="Province"
+          value={province}
+          onChangeText={setProvince}
+          placeholderTextColor="#888"
+        />
+
+        <TextInput
+          style={styles.input}
+          placeholder="District"
+          value={district}
+          onChangeText={setDistrict}
+          placeholderTextColor="#888"
+        />
+
         <Picker
           selectedValue={gender}
           onValueChange={(itemValue) => setGender(itemValue)}
@@ -211,6 +257,9 @@ const Dashboard = () => {
             <Text style={styles.tableHeaderText}>Last Name</Text>
             <Text style={styles.tableHeaderText}>Phone</Text>
             <Text style={styles.tableHeaderText}>Email</Text>
+            <Text style={styles.tableHeaderText}>Occupation</Text>
+            <Text style={styles.tableHeaderText}>Province</Text>
+            <Text style={styles.tableHeaderText}>District</Text>
             <Text style={styles.tableHeaderText}>Gender</Text>
             <Text style={styles.tableHeaderText}>Date of Birth</Text>
             <Text style={styles.tableHeaderText}>Actions</Text>
@@ -221,6 +270,9 @@ const Dashboard = () => {
               <Text style={styles.tableRowText}>{person.lastName}</Text>
               <Text style={styles.tableRowText}>{person.phone}</Text>
               <Text style={styles.tableRowText}>{person.email}</Text>
+              <Text style={styles.tableRowText}>{person.occupation}</Text>
+              <Text style={styles.tableRowText}>{person.province}</Text>
+              <Text style={styles.tableRowText}>{person.district}</Text>
               <Text style={styles.tableRowText}>{person.gender}</Text>
               <Text style={styles.tableRowText}>
                 {new Date(person.date).toDateString()}
